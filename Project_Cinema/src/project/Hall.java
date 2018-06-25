@@ -3,6 +3,10 @@ package project;
 public class Hall {
     private int number;
 
+
+    public Hall(){
+
+    }
     public Hall(int number) {
         this.number = number;
     }

@@ -6,9 +6,12 @@ import java.util.Date;
 public class Session {
     private Film film;
     private Hall hall;
-    private LocalDateTime date;
+    private double date;
 
-    public Session(Film film, Hall hall , LocalDateTime date) {
+    public Session(){
+
+    }
+    public Session(Film film, Hall hall , double date) {
         this.film = film;
         this.hall = hall;
         this.date = date;
@@ -30,11 +33,11 @@ public class Session {
         this.hall = hall;
     }
 
-    public LocalDateTime getDate() {
+    public double getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(double date) {
         this.date = date;
     }
 
@@ -44,6 +47,6 @@ public class Session {
                 "film='" + film + '\'' +
                 ", hall='" + hall + '\'' +
                 ", date=" + date +
-                '}';
+                "}\n";
     }
 }
