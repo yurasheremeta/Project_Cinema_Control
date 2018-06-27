@@ -33,6 +33,7 @@ public class Home extends JFrame {
               private JLabel password = new JLabel("input password");
               private JTextField pass = new JTextField();
               private JButton registr = new JButton("login");
+              private JButton exit = new JButton("back");
 
               public Autorize() {
                   super("Enter Password");
@@ -43,9 +44,11 @@ public class Home extends JFrame {
                   container.add(password);
                   ButtonGroup bg = new ButtonGroup();
                   bg.add(registr);
+                  bg.add(exit);
                   container.add(registr);
+                  container.add(exit);
                   registr.addActionListener((ev) ->{
-                      String password = "moderator";
+                      String password = "moder";
                       String buff = pass.getText();
                       if(buff.equals(password)){
                           Admin_Panel ap = new Admin_Panel();
@@ -53,6 +56,10 @@ public class Home extends JFrame {
                       }else {
                           JOptionPane.showMessageDialog(null , "Password incorect" , "Mistake" ,JOptionPane.ERROR_MESSAGE );
                       }
+                        dispose();
+                  });
+                  exit.addActionListener((ev) -> {
+                      dispose();
                   });
 
               }
@@ -60,7 +67,10 @@ public class Home extends JFrame {
           }
             Autorize app = new Autorize();
             app.setVisible(true);
+
          });
+
+
     }
 
 }

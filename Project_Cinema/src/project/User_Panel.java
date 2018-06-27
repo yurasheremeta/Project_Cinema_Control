@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class User_Panel extends JFrame {
-   // List<Session> sessions = new ArrayList<>();
+//  static   List<Session> sessions = new ArrayList<>();
     private JLabel name = new JLabel("user");
 
     private JButton sortByDate = new JButton("output by date");
@@ -15,6 +15,7 @@ public class User_Panel extends JFrame {
     private JButton sortByHall = new JButton("output by hall");
     private JButton output = new JButton("output List");
     private JButton outputFilms = new JButton("output list of films");
+    private JButton exit = new JButton("exit");
 
 
 
@@ -23,7 +24,7 @@ public class User_Panel extends JFrame {
         setSize(600 , 600);
 
         Container container = getContentPane();
-        container.setLayout(new GridLayout(6,2));
+        container.setLayout(new GridLayout(8,2));
         container.add(name);
 
         ButtonGroup bg = new ButtonGroup();
@@ -32,11 +33,13 @@ public class User_Panel extends JFrame {
         bg.add(sortByHall);
         bg.add(output);
         bg.add(outputFilms);
+        bg.add(exit);
         container.add(output);
         container.add(sortByDate);
         container.add(sortByName);
         container.add(outputFilms);
         container.add(sortByHall);
+        container.add(exit);
 
 
         output.addActionListener((ev) -> {
@@ -51,7 +54,7 @@ public class User_Panel extends JFrame {
                     .distinct()
                     .collect(Collectors.toList());
             StringBuilder sb = new StringBuilder();
-            Admin_Panel.sessions.forEach(e -> sb.append(e.getFilm().getName()));
+            Admin_Panel.sessions.forEach(e -> sb.append(e.getFilm().getName()+'\n'));
             JOptionPane.showMessageDialog(null , sb.toString() , "Films" ,JOptionPane.PLAIN_MESSAGE );
             System.out.println(names2);
 
@@ -61,6 +64,9 @@ public class User_Panel extends JFrame {
             for(Session session: Admin_Panel.sessions){
                 System.out.println(session);
             }
+            StringBuilder sb = new StringBuilder();
+            Admin_Panel.sessions.forEach(e -> sb.append(e));
+            JOptionPane.showMessageDialog(null , sb.toString() , "output by name" ,JOptionPane.PLAIN_MESSAGE );
 
         });
         sortByHall.addActionListener((ev) -> {
@@ -68,8 +74,13 @@ public class User_Panel extends JFrame {
             for(Session session: Admin_Panel.sessions){
                 System.out.println(session);
             }
+            StringBuilder sb = new StringBuilder();
+            Admin_Panel.sessions.forEach(e -> sb.append(e));
+            JOptionPane.showMessageDialog(null , sb.toString() , "Output by hall" ,JOptionPane.PLAIN_MESSAGE );
         });
 
-
+    exit.addActionListener((ev) ->{
+        dispose();
+    });
     }
 }
