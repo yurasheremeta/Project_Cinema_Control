@@ -2,6 +2,7 @@ package project;
 import jdk.nashorn.internal.ir.LiteralNode;
 import javax.swing.*;
 import java.awt.*;
+//import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import  java.io.*;
 
 public class Admin_Panel extends JFrame {
     static    List<Session> sessions = new ArrayList<>();
@@ -95,6 +97,10 @@ public class Admin_Panel extends JFrame {
                    inputDay.setText("");
                    inputHour.setText("");
                    inputMinute.setText("");
+                   FileWriter fw = new FileWriter("users");
+                   Session session1 = new Session(new Film(name) , new Hall(hall) ,LocalDateTime.of(year , month , dayOfMonth , hour , minute));
+                   fw.write(session1.toString());
+                   fw.close();
                }catch(Exception e){
                    System.out.println(e);
                    JOptionPane.showMessageDialog(null , "All field must " , "Mistake" ,JOptionPane.ERROR_MESSAGE );
@@ -102,6 +108,7 @@ public class Admin_Panel extends JFrame {
 
 
                }
+
         });
         outputList.addActionListener((ev) -> {
             StringBuilder sb = new StringBuilder();
