@@ -36,6 +36,8 @@ public class Admin_Panel extends JFrame {
     private JButton deleteSesion = new JButton("delete session");
     private JButton outpuFilms = new JButton(" films");
     private JButton exit = new JButton("exit");
+    private JButton outputFromFile = new JButton("output from file");
+
 
     public Admin_Panel(){
         super("Cinema control");
@@ -97,9 +99,14 @@ public class Admin_Panel extends JFrame {
                    inputDay.setText("");
                    inputHour.setText("");
                    inputMinute.setText("");
-                   FileWriter fw = new FileWriter("users");
+                   FileWriter fw = new FileWriter("Sessiona");
                    Session session1 = new Session(new Film(name) , new Hall(hall) ,LocalDateTime.of(year , month , dayOfMonth , hour , minute));
-                   fw.write(session1.toString());
+//                    for(Session session1:sessions){
+//                        fw.write(session1.toString());
+//                        fw.flush();
+//                    }
+                   fw.write(sessions.toString());
+                   fw.flush();
                    fw.close();
                }catch(Exception e){
                    System.out.println(e);
@@ -114,6 +121,7 @@ public class Admin_Panel extends JFrame {
             StringBuilder sb = new StringBuilder();
             sessions.forEach(e -> sb.append(e));
             JOptionPane.showMessageDialog(null , sb.toString() , "Sessions" ,JOptionPane.PLAIN_MESSAGE );
+
         });
         deleteSesion.addActionListener((ev) -> {
             for(Session session : sessions){
@@ -169,6 +177,28 @@ public class Admin_Panel extends JFrame {
         });
         exit.addActionListener((ev) -> {
             dispose();
+        });
+        outputFromFile.addActionListener((ev) -> {
+            File file = new File("OutputSessions.txt");
+            if (!file.exists()){
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                FileReader fr = new FileReader("Sessiona");
+                BufferedReader br = new BufferedReader(fr);
+
+                String line =  br.readLine();
+                String[] strs = line.split("");
+             //   Session ses = new Session(new Film(strs[0]),new Hall(hall) , strs[2])
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
     }
